@@ -19,7 +19,7 @@ app.get("/search", (req, res) => {
   const filterRestaurantsData = restaurantsData.filter(
     data =>
       data.name.toLowerCase().includes(keyword.trim()) ||
-      data.category.toLowerCase().includes(keyword.trim())
+      data.category.includes(keyword.trim())
   )
 
   // 第二種方法，模擬實際搜尋引擎搜尋，使用者可以加入空格來過濾更多
