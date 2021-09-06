@@ -13,6 +13,16 @@ app.get("/", (req, res) => {
   res.render("home", { restaurantsData })
 })
 
+app.get("/search", (req, res) => {
+  const { keyword } = req.query
+  const filterRestaurantsData = restaurantsData.filter(
+    data =>
+      data.name.includes(keyword.trim()) ||
+      data.category.includes(keyword.trim())
+  )
+  res.render("home", { restaurantsData: filterRestaurantsData })
+})
+
 app.get("/restaurants/:restaurantId", (req, res) => {
   const { restaurantId } = req.params
   const restaurantData = restaurantsData.find(
