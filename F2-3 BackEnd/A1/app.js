@@ -14,6 +14,10 @@ app.get("/", (req, res) => {
 })
 
 app.get("/search", (req, res) => {
+  if (!req.query.keyword) {
+    res.redirect("/")
+  }
+
   //第一種方法，簡易搜尋：純尋找關鍵字
   const keyword = req.query.keyword.trim()
   const filterRestaurantsData = restaurantsData.filter(
