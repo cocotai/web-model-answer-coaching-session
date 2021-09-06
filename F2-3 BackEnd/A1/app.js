@@ -14,7 +14,12 @@ app.get("/", (req, res) => {
 })
 
 app.get("/restaurants/:restaurantId", (req, res) => {
-  res.render("show")
+  const { restaurantId } = req.params
+  const restaurantData = restaurantsData.find(
+    e => e.id === Number(restaurantId)
+  )
+  // 也可使用 e.id === +restaurantId
+  res.render("show", { restaurantData })
 })
 
 app.listen(port, () => {
