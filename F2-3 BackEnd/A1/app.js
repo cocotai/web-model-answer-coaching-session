@@ -15,11 +15,11 @@ app.get("/", (req, res) => {
 
 app.get("/search", (req, res) => {
   //第一種方法，簡易搜尋：純尋找關鍵字
-  const keyword = req.query.keyword.toLowerCase()
+  const keyword = req.query.keyword.trim()
   const filterRestaurantsData = restaurantsData.filter(
     data =>
-      data.name.toLowerCase().includes(keyword.trim()) ||
-      data.category.includes(keyword.trim())
+      data.name.toLowerCase().includes(keyword.toLowerCase()) ||
+      data.category.includes(keyword)
   )
 
   // 第二種方法，模擬實際搜尋引擎搜尋，使用者可以加入空格來過濾更多
@@ -32,7 +32,7 @@ app.get("/search", (req, res) => {
   //       data.name.toLowerCase().includes(keyword)
   //   )
   // )
-  res.render("home", { restaurantsData: filterRestaurantsData })
+  res.render("home", { restaurantsData: filterRestaurantsData, keyword })
 })
 
 app.get("/restaurants/:restaurantId", (req, res) => {
