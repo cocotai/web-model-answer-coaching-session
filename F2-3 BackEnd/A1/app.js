@@ -16,7 +16,7 @@ app.get("/", (req, res) => {
 app.get("/restaurants/:restaurantId", (req, res) => {
   const { restaurantId } = req.params
   const restaurantData = restaurantsData.find(
-    e => e.id === Number(restaurantId)
+    data => data.id === Number(restaurantId)
   )
   // 也可使用 e.id === +restaurantId
   res.render("show", { restaurantData })
