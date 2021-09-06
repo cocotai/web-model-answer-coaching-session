@@ -1,5 +1,6 @@
 const express = require("express")
 const exphbs = require("express-handlebars")
+const restaurantsData = require("./restaurant.json").results
 
 const app = express()
 const port = 3000
@@ -9,7 +10,7 @@ app.set("view engine", "handlebars")
 app.use(express.static("public"))
 
 app.get("/", (req, res) => {
-  res.render("home")
+  res.render("home", { restaurantsData })
 })
 
 app.get("/restaurants/:restaurantId", (req, res) => {
