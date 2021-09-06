@@ -12,6 +12,10 @@ app.get("/", (req, res) => {
   res.render("home")
 })
 
+app.get("/restaurants/:restaurantId", (req, res) => {
+  res.render("show")
+})
+
 app.listen(port, () => {
   console.log(`Listening on http://localhost:${port}`)
 })
