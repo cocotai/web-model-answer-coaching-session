@@ -1,6 +1,21 @@
 const express = require("express")
 const exphbs = require("express-handlebars")
-const restaurantsData = require("./restaurant.json").results
+const mongoose = require("mongoose")
+
+mongoose.connect("mongodb://localhost/model-restaurant-list", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+
+const db = mongoose.connection
+
+db.on("error", () => {
+  console.log("mongodb error!")
+})
+
+db.once("open", () => {
+  console.log("mongodb connected!!")
+})
 
 const app = express()
 const port = 3000
