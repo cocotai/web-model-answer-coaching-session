@@ -17,8 +17,9 @@ db.once("open", () => {
   console.log("running restaurantSeeder script...")
 
   Restaurant.create(restaurantList)
-
-  console.log("restaurantSeeder done!")
-
-  db.close()
+    .then(() => {
+      console.log("restaurantSeeder done!")
+      db.close()
+    })
+    .catch(err => console.log(err))
 })
