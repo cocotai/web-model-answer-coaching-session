@@ -7,7 +7,6 @@ const Restaurant = require("./models/Restaurant")
 mongoose.connect("mongodb://localhost/model-restaurant-list", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  useFindAndModify: false,
 })
 
 const db = mongoose.connection
