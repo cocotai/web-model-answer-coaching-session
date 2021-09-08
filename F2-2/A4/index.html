@@ -20,11 +20,22 @@
       <div class="form-inline">
         <input type="text" placeholder="add item" id="new-todo" class="form-control mr-2">
         <button id="add-btn" class="btn btn-info">Add</button>
+        <!-- 增加無輸入值警示 -->
+        <div class="invalid-feedback">
+          Empty Item!
+        </div>
       </div>
     </header>
-    <ul id="my-todo" class="list-unstyled">
-      <!-- display todos here -->
-    </ul>
+    <div id="list-area">
+      <h4>Todo</h4>
+      <ul id="my-todo" class="list-unstyled">
+        <!-- display todos here -->
+      </ul>
+      <h4>Done</h4>
+      <ul id="done-list" class="list-unstyled">
+        <!-- display done items here -->
+      </ul>
+    </div>
   </div>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

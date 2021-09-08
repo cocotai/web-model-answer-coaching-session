@@ -9,6 +9,6 @@
   color: #bbb;
 }
 
-li>label[for='todo'] {
+li>label[for='todo'], [for='done'] {
   width: 210px;
 }
