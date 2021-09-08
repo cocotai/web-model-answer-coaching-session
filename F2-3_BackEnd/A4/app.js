@@ -88,7 +88,7 @@ app.get("/restaurants/:restaurantId/edit", (req, res) => {
     .catch(err => console.log(err))
 })
 
-// 編輯餐廳頁面
+// 更新餐廳
 app.put("/restaurants/:restaurantId", (req, res) => {
   const { restaurantId } = req.params
   Restaurant.findByIdAndUpdate(restaurantId, req.body)
