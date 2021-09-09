@@ -145,11 +145,11 @@ hr {
   }
 
   .personal-info {
-    width: 25%;
+    flex-basis: 25%;
   }
 
-  .expriences {
-    width: 70%;
+  .experiences {
+    flex-basis: 70%;
   }
 
   .experiences-wrapper {
