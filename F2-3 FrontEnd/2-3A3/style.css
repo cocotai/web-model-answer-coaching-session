@@ -98,7 +98,7 @@ p {
   color: #ff6600;
 }
 
-.description{
+.description {
   text-align: left;
 }
 /* Skill Section */
@@ -127,37 +127,37 @@ hr {
   margin-right: 5px;
 }
 
-@media screen and (min-width: 576px){
-  .skills-wrapper{
+@media screen and (min-width: 576px) {
+  .skills-wrapper {
     display: flex;
     justify-content: space-between;
   }
-  
-  .skill{
+
+  .skill {
     flex-basis: 30%;
   }
 }
-@media screen and (min-width: 1200px){
+@media screen and (min-width: 1200px) {
   /* 改成左右排列 */
-  main{
+  main {
     display: flex;
     justify-content: space-evenly;
   }
 
-  .personal-info{
-    width: 25%;
+  .personal-info {
+    flex-basis: 25%;
   }
 
-  .expriences{
-    width: 70%;
+  .experiences {
+    flex-basis: 70%;
   }
 
-  .experiences-wrapper{
+  .experiences-wrapper {
     display: flex;
     justify-content: space-between;
   }
-  
-  .experience-item{
+
+  .experience-item {
     flex-basis: 30%;
   }
 }
