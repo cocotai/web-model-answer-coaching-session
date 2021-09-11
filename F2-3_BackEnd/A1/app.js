@@ -14,23 +14,25 @@ app.get("/", (req, res) => {
 })
 
 app.get("/search", (req, res) => {
-  if (!req.query.keyword) {
+  if (!req.query.keywords) {
     res.redirect("/")
   }
 
+  const keywords = req.query.keywords
+
   //第一種方法，簡易搜尋：純尋找關鍵字
-  const keyword = req.query.keyword.trim()
+  const keyword = req.query.keywords.trim().toLowerCase()
   const filterRestaurantsData = restaurantsData.filter(
     data =>
-      data.name.toLowerCase().includes(keyword.toLowerCase()) ||
+      data.name.toLowerCase().includes(keyword) ||
       data.category.includes(keyword)
   )
 
   // 第二種方法，模擬實際搜尋引擎搜尋，使用者可以加入空格來過濾更多
   // 如：搜尋時輸入「義式 啤酒」，只會顯示同時有義式與啤酒的餐廳
-  // const keywords = req.query.keyword.toLowerCase().split(" ")
+  // const keywordsList = req.query.keywords.toLowerCase().split(" ")
   // const filterRestaurantsData = restaurantsData.filter(data =>
-  //   keywords.every(
+  //   keywordsList.some(
   //     keyword =>
   //       data.category.includes(keyword) ||
   //       data.name.toLowerCase().includes(keyword)
