@@ -10,7 +10,7 @@ app.set("view engine", "handlebars")
 app.use(express.static("public"))
 
 app.get("/", (req, res) => {
-  res.render("home", { restaurantsData })
+  res.render("index", { restaurantsData })
 })
 
 app.get("/search", (req, res) => {
@@ -36,7 +36,7 @@ app.get("/search", (req, res) => {
   //       data.name.toLowerCase().includes(keyword)
   //   )
   // )
-  res.render("home", { restaurantsData: filterRestaurantsData, keyword })
+  res.render("index", { restaurantsData: filterRestaurantsData, keywords })
 })
 
 app.get("/restaurants/:restaurantId", (req, res) => {
