@@ -5,28 +5,29 @@ const Restaurant = require("../../models/Restaurant")
 router.get("/", (req, res) => {
   Restaurant.find({})
     .lean()
-    .then(restaurantsData => res.render("home", { restaurantsData }))
+    .then(restaurantsData => res.render("index", { restaurantsData }))
     .catch(err => console.log(err))
 })
 
 router.get("/search", (req, res) => {
-  if (!req.query.keyword) {
+  if (!req.query.keywords) {
     res.redirect("/")
   }
 
-  const keyword = req.query.keyword.trim()
+  const keywords = req.query.keywords
+  const keyword = req.query.keywords.trim().toLowerCase()
 
   Restaurant.find({})
     .lean()
     .then(restaurantsData => {
       const filterRestaurantsData = restaurantsData.filter(
         data =>
-          data.name.toLowerCase().includes(keyword.toLowerCase()) ||
+          data.name.toLowerCase().includes(keyword) ||
           data.category.includes(keyword)
       )
-      res.render("home", {
+      res.render("index", {
         restaurantsData: filterRestaurantsData,
-        keyword,
+        keywords,
       })
     })
     .catch(err => console.log(err))
