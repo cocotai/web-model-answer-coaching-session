@@ -1,5 +1,6 @@
 'use strict'
 
+// 1. 原課程內容提供程式碼使用 let，需要回報課程團隊改用 const，避免學生困惑
 // 資料
 const movies = [{
   title: 'The Avengers',
@@ -76,6 +77,7 @@ function ratingAndDeleteMovie (event) {
       rating -= 1
     }
     ratingBox.textContent = rating
+    // 2. 由於後面程式碼也有用 if 包起來，使得這裡的 return 其實作用不大，建議移除避免學生疑惑
     return
   }
 
@@ -134,6 +136,7 @@ dataPanel.innerHTML = displayMovieList(movies)
 
 // // event handler
 // function ratingAndDeleteMovie (event) {
+//   // 3. 雖然 dataset 的做法很好，但似乎 2-2 才會教到，這部分可能也得割愛
 //   // 用 dataset 比對元素
 //   // 考量：class name 主要用於 css 樣式。若把專用於 javascript 的名字寫在 class name 中，若協同合作者一時不察，認為 css 沒有用到該 class name，而把 class name 刪掉，javascript 的功能也會跟著壞掉
 //   const targetDataset = event.target.dataset
