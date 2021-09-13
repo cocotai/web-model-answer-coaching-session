@@ -7,6 +7,7 @@ const addBtn = document.querySelector("#add-btn");
 const input = document.querySelector("#new-todo");
 
 // 資料
+// 建議1. 變數 todos、todo、newItem 這些沒有要重新賦值的變數都建議使用 const 宣告，不過由於這個修改會牽扯到 2-1 的教案內容，如果不可行的話，單獨修改本作業起手式程式碼範例亦可。
 let todos = [
   "Hit the gym",
   "Read a book",
@@ -40,11 +41,13 @@ function addDoneItem(text) {
 
 // Create
 addBtn.addEventListener("click", function () {
+// 建議2. 建議此處讓 inputValue = input.value.trim()，雖然前後有空格的文字放入 HTML 後畫面上依然不會顯示空格，因此實際執行結果並無差異，但針對驗證後的資料處理（addItem）會是較為合理的方式，階段二亦同。
   const inputValue = input.value;
 
   // 功能1：透過trim()防止產生空白 todo。
   if (inputValue.trim().length > 0) {
     addItem(inputValue);
+    // 建議3. 優化體驗立意良好，但 model answer 建議以 Meets Expectation 為主，優化交由學生發想較為恰當，階段二亦同。不過警告樣式確實有出現在題目的圖片中，可以討論是否正式加入規格文字中。
     // 優化使用者體驗：新增完成後清空輸入框
     input.value = ''
     // 優化使用者體驗：新增警告機制
@@ -81,6 +84,7 @@ listArea.addEventListener("click", function (event) {
       addDoneItem(target.innerText)
       parentElement.remove()
     } else {
+      // 建議4. 同 3，擴充規格建議交由學生發想較為恰當，階段二亦同。
       // 擴充規格參考：Done 清單裡面的項目能夠被使用者還原回 Todo 清單中
       addItem(target.innerText)
       parentElement.remove()
@@ -88,6 +92,7 @@ listArea.addEventListener("click", function (event) {
   }
 });
 
+// 建議5. addItem() 和 addDoneItem() 其實也長得很像，建議運用參數傳入目的地、class，將兩者合併為一個函式，更能凸顯出函式包裝的益處。
 // // 階段二：函式包裝
 // // 初始變數
 // const listArea = document.querySelector("#list-area");
@@ -161,6 +166,7 @@ listArea.addEventListener("click", function (event) {
 //     parentElement.remove();
 //   } else if (target.tagName === "LABEL") {
 //     if (!target.classList.contains("checked")) {
+// 建議6. 其實 appendChild() 本身就有移動既有元素的功能，不用手動 add 再 remove，建議可以拉出階段三，藉由 appendChild() 本身的功能再優化程式碼品質。
 //       addDoneItem(target.innerText)
 //       parentElement.remove()
 //     } else {
