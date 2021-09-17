@@ -21,15 +21,10 @@ const album = {
 }
 
 // WRITE YOUR CODE ////////////////////////
-// 1. 註解斜線後面建議空一格，比較符合 javascript standard style
 // 階段一
 // 使用迴圈將歌名印出
 let navHtml = ''
 for (const song of album.tracks) {
-  /* 2. 滿多人會不清楚 pills 的用法（特別是 data-toggle），也許可以再多一個前置階段，不使用 data-toggle，而是單純在監聽器中操作 classList，
-  手動處理 active，先讓學生實際理解與 pills 有關的 class，下個階段再加入 data-toggle，讓學生理解兩者之間的不同，進而理解 data-toggle 的用途。
-  （但是也有可能引發學生直接放棄理解 data-toggle 的可能性，也許需要再討論）
-  */
   navHtml += `
       <li>
         <a class="nav-link" href="#" role="tab">${song}</a>
@@ -37,10 +32,10 @@ for (const song of album.tracks) {
 }
 songList.innerHTML = navHtml
 
-
-// 3. 箭頭函式單一參數時 () 可寫可不寫，但整份程式碼中建議統一（event 有括號，response、error 沒括號），減少學生疑惑的可能性，階段二亦同。
 songList.addEventListener('click', event => {
+  // 建議 1. 教材提到 getElementsBy* 是早期用法，為了避免學生困惑，建議改用 querySelector。另外只指定 active 的話，頁面中如果有其他 active 的元素，也會一起被改掉，建議選擇器改用 '#song-list .active' 指定 songList 裡 active 的項目。
   const activeItem = document.getElementsByClassName('active')
+  // 建議 2. 理論上找到的東西只會有一個，不需要用到迴圈。不過由於第一次按的時候沒有人是 active 的，使用 querySelector 會回傳 null，所以需要先判斷是否存在回傳值後再 remove，階段二亦同。（我猜目前的寫法是因應 getElementsByClassName 而做的對策，這個做法找不到時會回傳空的 HTMLCollection 而不是 null，所以即使用迴圈跑空集合也不會發生錯誤。）
   for (let item of activeItem) {
     item.classList.remove('active')
   }
@@ -48,7 +43,6 @@ songList.addEventListener('click', event => {
     event.target.classList.add('active')
     const song = event.target.innerText
     // 點擊時向 axios 發出請求
-    // 4. 建議統一使用 Template literals，加強學生印象，階段二亦同
     axios.get(`${BASE_URL}Adele/${song}.json`)
       .then(response => {
         const lyrics = response.data.lyrics
@@ -64,7 +58,6 @@ songList.addEventListener('click', event => {
 // // 階段二：將每個功能透過函式包裝
 // function displaySongList(album) {
 //   let navHtml = ''
-//   // 5. 階段二可以額外使用 forEach，方便學生觀摩不同做法
 //   // 新增forEach用法
 //   album.tracks.forEach(song => {
 //     navHtml += `
@@ -101,11 +94,11 @@ songList.addEventListener('click', event => {
 
 // displaySongList(album)
 
-// // 階段三：使用BootStrap的Pills
+// // 階段三：使用Bootstrap的Pills
 // function displaySongList(album) {
 //   let navHtml = ''
-//   // 5. 階段二可以額外使用 forEach，方便學生觀摩不同做法
 //   // 新增Bootstrap pills用法
+//   // 建議 3. 可以在註解加上怎麼找到 data-toggle 的方法，例如在 pills 同個頁面下方的 Using data attributes 小標題裡之類的，引導學生自行查找閱讀。
 //   album.tracks.forEach(song => {
 //     navHtml += `
 //       <li>
