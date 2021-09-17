@@ -7,8 +7,6 @@ const addBtn = document.querySelector("#add-btn");
 const input = document.querySelector("#new-todo");
 
 // 資料
-// 建議1. 變數 todos、todo、newItem 這些沒有要重新賦值的變數都建議使用 const 宣告，不過由於這個修改會牽扯到 2-1 的教案內容，如果不可行的話，單獨修改本作業起手式程式碼範例亦可。
-// 已修正
 const todos = [
   "Hit the gym",
   "Read a book",
@@ -43,11 +41,9 @@ function addDoneItem(text) {
 
 // Create
 addBtn.addEventListener("click", function () {
-  // 建議2. 建議此處讓 inputValue = input.value.trim()，雖然前後有空格的文字放入 HTML 後畫面上依然不會顯示空格，因此實際執行結果並無差異，但針對驗證後的資料處理（addItem）會是較為合理的方式，階段二亦同。
   const inputValue = input.value.trim()
   addItem(inputValue);
   // 功能1：透過trim()防止產生空白 todo。
-  // 建議3. 優化體驗立意良好，但 model answer 建議以 Meets Expectation 為主，優化交由學生發想較為恰當，階段二亦同。不過警告樣式確實有出現在題目的圖片中，可以討論是否正式加入規格文字中。
   // 暫時移除優化部分
 });
 // 功能2：當使用者在 input#newTodo 裡按下 Enter 鍵時，可以新增 to-do。
@@ -72,13 +68,9 @@ listArea.addEventListener("click", function (event) {
       addDoneItem(target.innerText)
       parentElement.remove()
     }
-    // 建議4. 同 3，擴充規格建議交由學生發想較為恰當，階段二亦同。
-    // 擴充規格參考：Done 清單裡面的項目能夠被使用者還原回 Todo 清單中
-    // 暫時先移除優化部分
   }
 });
 
-// // 建議5. addItem() 和 addDoneItem() 其實也長得很像，建議運用參數傳入目的地、class，將兩者合併為一個函式，更能凸顯出函式包裝的益處。
 // // 階段二：函式包裝
 // // 初始變數
 // const listArea = document.querySelector("#list-area");
@@ -101,7 +93,6 @@ listArea.addEventListener("click", function (event) {
 // }
 
 // // 函式
-// // 合併addItem() 和 addDoneItem()函式
 // function addItem(text, listName) {
 //   if (!text.length) return
 //   const newItem = document.createElement("li");
@@ -109,6 +100,7 @@ listArea.addEventListener("click", function (event) {
 
 //   if (listName === doneList) {
 //     className = 'checked'
+// // 建議 1. listName 建議統一由外部傳入會較為直觀
 //   } else {
 //     listName = list
 //   }
@@ -119,6 +111,7 @@ listArea.addEventListener("click", function (event) {
 //   listName.appendChild(newItem);
 // }
 
+// // 建議 2. 多用一個函式包起來雖然可行，但由於做的內容性質和 addItem 十分接近，使用起來容易混淆，並且由於 addItem 可以有兩個參數，而 createItem 只能有一個參數，會導致經由 createItem 呼叫 addItem 時無法傳入參數。當然直接呼叫 addItem 是一種解決辦法，但也會因此引出 createItem 是否必要的疑惑，因此建議移除。
 // function createItem(input) {
 //   const inputValue = input.value.trim();
 //   addItem(inputValue);
@@ -145,8 +138,6 @@ listArea.addEventListener("click", function (event) {
 //     parentElement.remove();
 //   } else if (target.tagName === "LABEL") {
 //     if (!target.classList.contains("checked")) {
-//       // 建議6. 其實 appendChild() 本身就有移動既有元素的功能，不用手動 add 再 remove，建議可以拉出階段三，藉由 appendChild() 本身的功能再優化程式碼品質。
-//       // 先移除優化的部分
 //       addItem(target.innerText, doneList)
 //       parentElement.remove()
 //     }
@@ -211,7 +202,6 @@ listArea.addEventListener("click", function (event) {
 //     parentElement.remove();
 //   } else if (target.tagName === "LABEL") {
 //     if (!target.classList.contains("checked")) {
-//       // 建議6. 其實 appendChild() 本身就有移動既有元素的功能，不用手動 add 再 remove，建議可以拉出階段三，藉由 appendChild() 本身的功能再優化程式碼品質。
 //       //利用appendChild()實現區塊間的移動
 //       doneList.appendChild(parentElement)
 //       target.classList.toggle('checked')
