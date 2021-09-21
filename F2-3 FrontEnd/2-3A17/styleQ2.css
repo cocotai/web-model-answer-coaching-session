@@ -1,5 +1,6 @@
 *{
   box-sizing: border-box;
+  /* 如果不加的話，在下方的 grid-template-columns: 100px; 會需要加上 border 的寬度而改成 grid-template-columns: 104px */
 }
 
 .item {
@@ -22,7 +23,6 @@
 @media screen and (min-width: 200px){
   .wrapper {
     grid-template-columns: repeat(2, 100px);
-    grid-gap: 6px;
   }
 }
 
