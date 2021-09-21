@@ -4,7 +4,7 @@ const methodOverride = require("method-override")
 const mongoose = require("mongoose")
 const Restaurant = require("./models/Restaurant")
 
-mongoose.connect("mongodb://localhost/model-restaurant-list", {
+mongoose.connect("mongodb://localhost/restaurant-list", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
