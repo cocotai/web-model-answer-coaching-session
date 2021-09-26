@@ -13,7 +13,6 @@ body {
   justify-content: center;
   align-items: center;
   /*  */
-  position: relative;
 }
 
 .card-1 {
@@ -33,6 +32,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 .footer {
