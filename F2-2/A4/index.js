@@ -89,7 +89,7 @@ listArea.addEventListener("click", function (event) {
 // ];
 
 // for (let todo of todos) {
-//   addItem(todo);
+//   addItem(todo, list);
 // }
 
 // // 函式
@@ -100,9 +100,6 @@ listArea.addEventListener("click", function (event) {
 
 //   if (listName === doneList) {
 //     className = 'checked'
-// // 建議 1. listName 建議統一由外部傳入會較為直觀
-//   } else {
-//     listName = list
 //   }
 //   newItem.innerHTML = `
 //     <label for="todo" class="${className}">${text}</label>
@@ -111,20 +108,16 @@ listArea.addEventListener("click", function (event) {
 //   listName.appendChild(newItem);
 // }
 
-// // 建議 2. 多用一個函式包起來雖然可行，但由於做的內容性質和 addItem 十分接近，使用起來容易混淆，並且由於 addItem 可以有兩個參數，而 createItem 只能有一個參數，會導致經由 createItem 呼叫 addItem 時無法傳入參數。當然直接呼叫 addItem 是一種解決辦法，但也會因此引出 createItem 是否必要的疑惑，因此建議移除。
-// function createItem(input) {
-//   const inputValue = input.value.trim();
-//   addItem(inputValue);
-// }
-
 // // Create
 // addBtn.addEventListener("click", function () {
-//   createItem(input)
+//   const inputValue = input.value.trim();
+//   addItem(inputValue, list)
 // });
 // // 功能2：當使用者在 input#newTodo 裡按下 Enter 鍵時，可以新增 to-do。
 // input.addEventListener("keypress", function (event) {
+//   const inputValue = input.value.trim();
 //   if (event.key === "Enter") {
-//     createItem(input)
+//     addItem(inputValue, list)
 //   }
 // });
 
@@ -176,19 +169,16 @@ listArea.addEventListener("click", function (event) {
 //   list.appendChild(newItem);
 // }
 
-// function createItem(input) {
-//   const inputValue = input.value.trim();
-//   addItem(inputValue);
-// }
-
 // // Create
 // addBtn.addEventListener("click", function () {
-//   createItem(input)
+//   const inputValue = input.value.trim();
+//   addItem(inputValue);
 // });
 // // 功能2：當使用者在 input#newTodo 裡按下 Enter 鍵時，可以新增 to-do。
 // input.addEventListener("keypress", function (event) {
+//   const inputValue = input.value.trim();
 //   if (event.key === "Enter") {
-//     createItem(input)
+//     addItem(inputValue);
 //   }
 // });
 
