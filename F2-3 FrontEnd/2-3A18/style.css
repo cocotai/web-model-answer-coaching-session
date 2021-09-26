@@ -1,0 +1,43 @@
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 600px;
+  height: 600px;
+  background: #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /*  */
+  position: relative;
+}
+
+.card-1 {
+  display: flex;
+  width: 500px;
+  height: 500px;
+  background: #aaa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-2 {
+  width: 400px;
+  height: 400px;
+  background: #999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  background: #f00;
+}
