@@ -33,11 +33,9 @@ for (const song of album.tracks) {
 songList.innerHTML = navHtml
 
 songList.addEventListener('click', event => {
-  // 建議 1. 教材提到 getElementsBy* 是早期用法，為了避免學生困惑，建議改用 querySelector。另外只指定 active 的話，頁面中如果有其他 active 的元素，也會一起被改掉，建議選擇器改用 '#song-list .active' 指定 songList 裡 active 的項目。
-  const activeItem = document.getElementsByClassName('active')
-  // 建議 2. 理論上找到的東西只會有一個，不需要用到迴圈。不過由於第一次按的時候沒有人是 active 的，使用 querySelector 會回傳 null，所以需要先判斷是否存在回傳值後再 remove，階段二亦同。（我猜目前的寫法是因應 getElementsByClassName 而做的對策，這個做法找不到時會回傳空的 HTMLCollection 而不是 null，所以即使用迴圈跑空集合也不會發生錯誤。）
-  for (let item of activeItem) {
-    item.classList.remove('active')
+  const activeItem = document.querySelector('#song-list .active')
+  if (activeItem) {
+    activeItem.classList.remove('active')
   }
   if (event.target.matches('.nav-link')) {
     event.target.classList.add('active')
@@ -76,9 +74,9 @@ songList.addEventListener('click', event => {
 // }
 
 // songList.addEventListener('click', event => {
-//   const activeItem = document.getElementsByClassName('active')
-//   for (let item of activeItem) {
-//     item.classList.remove('active')
+//   const activeItem = document.querySelector('#song-list .active')
+//   if (activeItem) {
+//     activeItem.classList.remove('active')
 //   }
 //   if (event.target.matches('.nav-link')) {
 //     event.target.classList.add('active')
@@ -97,8 +95,8 @@ songList.addEventListener('click', event => {
 // // 階段三：使用Bootstrap的Pills
 // function displaySongList(album) {
 //   let navHtml = ''
-//   // 新增Bootstrap pills用法
-//   // 建議 3. 可以在註解加上怎麼找到 data-toggle 的方法，例如在 pills 同個頁面下方的 Using data attributes 小標題裡之類的，引導學生自行查找閱讀。
+//   // 新增 Bootstrap pills 用法
+//   // 查閱在 pills 同個頁面下方的 Using data attributes 小標題中的說明可以發現透過 data-toggle 可以很方便的讓被選取的項目呈現active的效果。
 //   album.tracks.forEach(song => {
 //     navHtml += `
 //       <li>
