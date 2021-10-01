@@ -1,3 +1,18 @@
-#### 分類方法
-Ａ數字為作業形式教案，檔案內放至 model Answer
-若需更改單元中起手式 OR 介紹程式碼 請至相關主題資料夾尋找 
+BootstrapUpdate branch 的分類方法
+
+命名規則：
+
+第一層資料夾 `根據學期名稱命名`
+ex:F2-1 學期 2-1
+
+第二層資料夾分類有二：案例主題＆assignment
+
+`教案案例主題分類`
+如：電影清單、我的名片、籃球隊計分板...
+內容包含：教學過程中可能使用到的 code & 作業的起手式
+
+`assignment`
+以 LH 上呈現的作業編號命名資料夾，內容主要為該作業的 model answer
+
+工作流程：
+針對 bootstrap 修改的助教，需 clone BootstrapUpdate branch ，並展開自己的 branch 開始工作～
