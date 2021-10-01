@@ -10,7 +10,8 @@
 
   <script>
     function copy() { const URL = document.getElementById("generatedURL");
-    navigator.clipboard.writeText(URL.innerText); alert("Copied!") }
+    navigator.clipboard.writeText(URL.innerText).then(()=>
+    alert('copied').catch(error=>console.log(error)))}
   </script>
 {{else}}
   <form action="/" method="POST">

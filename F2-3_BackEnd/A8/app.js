@@ -10,27 +10,37 @@ const port = 3000
 
 app.use(express.urlencoded({ extended: true }))
 
-app.use((req, res, next) => {
-  const shortURL = req.url.replace("/", "")
-  URL.findOne({ shortURL })
-    .then(data => res.redirect(data.originalURL))
-    .catch(err => next())
-})
-
 app.engine("handlebars", exphbs({ defaultLayout: "main" }))
 app.set("view engine", "handlebars")
 app.use(express.static("public"))
 
 app.get("/", (req, res) => {
-  res.render("home")
+  res.render("index")
 })
 
 app.post("/", (req, res) => {
+  if (!req.body.url) return res.redirect("/")
   const shortURL = shortenURL()
-  URL.create({
-    shortURL,
-    originalURL: req.body.url,
-  }).then(data => res.render("home", { origin: req.headers.origin, shortURL }))
+
+  URL.findOne({ originalURL: req.body.url })
+    .then(data =>
+      data ? data : URL.create({ shortURL, originalURL: req.body.url })
+    )
+    .then(data =>
+      res.render("index", {
+        origin: req.headers.origin,
+        shortURL: data.shortURL,
+      })
+    )
+    .catch(error => console.error(error))
+})
+
+app.get("/:shortURL", (req, res) => {
+  const { shortURL } = req.params
+
+  URL.findOne({ shortURL })
+    .then(data => res.redirect(data.originalURL))
+    .catch(error => console.error(error))
 })
 
 app.listen(port, () => {
