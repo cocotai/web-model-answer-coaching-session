@@ -20,19 +20,18 @@ const album = {
   ]
 }
 
-// WRITE YOUR CODE ////////////////////////
-//階段一
-//使用迴圈將歌名印出
+// WRITE YOUR CODE /////////////////////
+// 階段一
+// 使用迴圈將歌名印出
 let navHtml = ''
 for (const song of album.tracks) {
-  //使用Bootstrap的pills
+  // 使用 Bootstrap 的 pills
   navHtml += `
-      <li>
-        <a class="nav-link" data-bs-toggle="pill" href="#" role="tab">${song}</a>
-      </li>`
+    <li>
+      <a class="nav-link" data-bs-toggle="pill" href="#" role="tab">${song}</a>
+    </li>`
 }
 songList.innerHTML = navHtml
-
 
 songList.addEventListener('click', (event) => {
   if (event.target.matches('.nav-link')) {
@@ -43,14 +42,13 @@ songList.addEventListener('click', (event) => {
         const lyrics = response.data.lyrics
         lyricsPanel.innerHTML = `
           <h3>${song}</h3>
-          <pre>${lyrics}</pre>
-          `
+          <pre>${lyrics}</pre>`
       })
       .catch(error => console.log(error))
   }
 })
 
-//階段二：將每個功能透過函式包裝
+// 階段二：將每個功能透過函式包裝
 // function displaySongList(album) {
 //   let navHtml = ''
 //   for (const song of album.tracks) {
@@ -65,8 +63,7 @@ songList.addEventListener('click', (event) => {
 // function displayLyrics(song, lyrics) {
 //   lyricsPanel.innerHTML = `
 //     <h3>${song}</h3>
-//     <pre>${lyrics}</pre>
-//   `
+//     <pre>${lyrics}</pre>`
 // }
 
 // songList.addEventListener('click', (event) => {
