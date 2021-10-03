@@ -28,7 +28,7 @@ for (const song of album.tracks) {
   //使用Bootstrap的pills
   navHtml += `
       <li>
-        <a class="nav-link" data-toggle="pill" href="#" role="tab">${song}</a>
+        <a class="nav-link" data-bs-toggle="pill" href="#" role="tab">${song}</a>
       </li>`
 }
 songList.innerHTML = navHtml
@@ -56,7 +56,7 @@ songList.addEventListener('click', (event) => {
 //   for (const song of album.tracks) {
 //     navHtml += `
 //       <li>
-//         <a class="nav-link" data-toggle="pill" href="#" role="tab">${song}</a>
+//         <a class="nav-link" data-bs-toggle="pill" href="#" role="tab">${song}</a>
 //       </li>`
 //   }
 //   songList.innerHTML = navHtml
