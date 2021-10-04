@@ -6,9 +6,12 @@
   <button class="copy" onclick="copy()">Copy</button>
 
   <script>
-    function copy() { const URL = document.getElementById("generatedURL");
-    navigator.clipboard.writeText(URL.innerText) .then(()=>alert('copied'))
-    .catch(error=>console.log(error))}
+    function copy() {
+      const URL = document.getElementById("generatedURL")
+      navigator.clipboard.writeText(URL.innerText)
+        .then(() => alert('copied'))
+        .catch(error => console.log(error))
+    }
   </script>
 {{else}}
   <form action="/" method="POST">
