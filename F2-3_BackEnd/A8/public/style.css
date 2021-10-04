@@ -9,11 +9,21 @@ h2 {
   flex: 1;
 }
 
-object {
+img {
   flex: 1;
   width: 100px;
   height: 100px;
   margin-bottom: 20px;
+}
+
+.error-msg {
+  width: 50%;
+  text-align: center;
+  background-color: salmon;
+  padding: 8px 15px;
+  border-radius: 5px;
+  color: white;
+  margin: 10px 0;
 }
 
 .container {
@@ -37,7 +47,13 @@ p {
   font-weight: bolder;
 }
 
-button.shorten {
+a {
+  text-decoration: none;
+  text-align: center;
+}
+
+button.shorten,
+a {
   width: 50%;
   background-color: white;
   border: 1px solid rgb(109, 109, 255);
