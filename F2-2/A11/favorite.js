@@ -1,6 +1,7 @@
+//功能二: 收藏 / 移除
 const BASE_URL = 'https://lighthouse-user-api.herokuapp.com'
 const INDEX_URL = BASE_URL + '/api/v1/users/'
-const friends = []
+const friends = JSON.parse(localStorage.getItem('favoriteFriends'))
 // 功能三: 分頁
 let filteredFriends = []
 const FRIENDS_PER_PAGE = 12
@@ -23,30 +24,13 @@ function renderFriendList(data) {
         </div>
         <div class="card-footer">
           <button class="btn btn-primary btn-show-info" data-toggle="modal" data-target="#info-modal" data-id="${item.id}">More</button>
-          <button class="btn btn-info btn-add-favorite" data-id="${item.id}">+</button>
+          <button class="btn btn-danger btn-remove-favorite" data-id="${item.id}">X</button>
         </div>
       </div>
     </div>
   </div>`
   })
   dataPanel.innerHTML = rawHTML
-}
-
-// 功能三: 分頁
-function renderPaginator(amount) {
-  const numberOfPages = Math.ceil(amount / FRIENDS_PER_PAGE)
-  let rawHTML = ''
-
-  for (let page = 1; page <= numberOfPages; page++) {
-    rawHTML += `<li class="page-item"><a class="page-link" href="#" data-page="${page}">${page}</a></li>`
-  }
-  paginator.innerHTML = rawHTML
-}
-
-function getFriendsByPage(page) {
-  const data = filteredFriends.length ? filteredFriends : friends
-  const startIndex = (page - 1) * FRIENDS_PER_PAGE
-  return data.slice(startIndex, startIndex + FRIENDS_PER_PAGE)
 }
 
 function showInfoModal(id) {
@@ -78,24 +62,39 @@ function showInfoModal(id) {
   })
 }
 
-// 功能二: 收藏 / 移除
-function addToFavorite(id) {
-  const list = JSON.parse(localStorage.getItem('favoriteFriends')) || []
-  const friend = friends.find(friend => friend.id === id)
-  if (list.some(friend => friend.id === id)) {
-    return alert('此好友已經在最愛清單中！')
+function renderPaginator(amount) {
+  const numberOfPages = Math.ceil(amount / FRIENDS_PER_PAGE)
+  let rawHTML = ''
+
+  for (let page = 1; page <= numberOfPages; page++) {
+    rawHTML += `<li class="page-item"><a class="page-link" href="#" data-page="${page}">${page}</a></li>`
   }
-  list.push(friend)
-  localStorage.setItem('favoriteFriends', JSON.stringify(list))
+  paginator.innerHTML = rawHTML
+}
+
+function getFriendsByPage(page) {
+  const data = filteredFriends.length ? filteredFriends : friends
+  const startIndex = (page - 1) * FRIENDS_PER_PAGE
+  return data.slice(startIndex, startIndex + FRIENDS_PER_PAGE)
+}
+
+function removeFromFavorite(id) {
+  if (!friends) return
+
+  const friendIndex = friends.findIndex(friend => friend.id === id)
+  if (friendIndex === -1) return
+
+  friends.splice(friendIndex, 1)
+  localStorage.setItem('favoriteFriends', JSON.stringify(friends))
+  renderFriendList(friends)
 }
 
 // listen to data panel
 dataPanel.addEventListener('click', function onPanelClicked(event) {
   if (event.target.matches('.btn-show-info')) {
     showInfoModal(event.target.dataset.id)
-    // 功能二: 收藏
-  } else if (event.target.matches('.btn-add-favorite')) {
-    addToFavorite(Number(event.target.dataset.id))
+  } else if (event.target.matches('.btn-remove-favorite')) {
+    removeFromFavorite(Number(event.target.dataset.id))
   }
 })
 
@@ -125,13 +124,6 @@ paginator.addEventListener('click', function onPaginatorClicked(event) {
   renderFriendList(getFriendsByPage(page))
 })
 
-// send request to index api
-axios
-  .get(INDEX_URL)
-  .then(response => {
-    friends.push(...response.data.results)
-    // 功能三: 分頁
-    renderPaginator(friends.length)
-    renderFriendList(getFriendsByPage(1))
-  })
-  .catch(err => console.log(err))
+// 功能三: 分頁
+renderPaginator(friends.length)
+renderFriendList(getFriendsByPage(1))
