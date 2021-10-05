@@ -50,7 +50,7 @@ th, td {
   --main-dark: #3a3a3a;
   --grey-1: #e4e4e4;
   --background-grey: #202020;
-  --main-color: transparent;
+  --main-color: #ff6500;
   --border-color: #e4e4e4;
   --zebra-color: #575757;
   --header-color: #2e2e2e;
@@ -142,7 +142,16 @@ body {
   font-size: 48px;
 }
 
+/* 限制高度並呈現 scroll 效果 */
+
+.main__wrapper {
+  width: 100%;
+  height: 80%;
+  overflow-y: scroll;
+}
+
 .main__table {
+  position: relative;
   background: var(--table-background-color);
 }
 
@@ -156,8 +165,27 @@ body {
   border-bottom: 1px solid var(--border-color);
 }
 
+.table__row:nth-child(even) {
+  background: var(--zebra-color);
+}
+
+.table__row:hover {
+  background: var(--grey-1);
+  transition: background 0.1s ease-out;
+}
+
 .table__cell {
   text-align: center;
+}
+
+.table__thead {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.main__table .table__body>.checked {
+  background: var(--main-color);
 }
 
 .table__cell--checkbox {
@@ -263,5 +291,6 @@ body {
   }
   .main {
     margin-left: 100px;
+    min-width: 700px;
   }
 }
