@@ -3,6 +3,8 @@ const INDEX_URL = BASE_URL + '/api/v1/users/'
 const friends = []
 
 const dataPanel = document.querySelector('#data-panel')
+const searchForm = document.querySelector('#search-form')
+const searchInput = document.querySelector('#search-input')
 
 function renderFriendList(data) {
   let rawHTML = ''
@@ -60,6 +62,23 @@ dataPanel.addEventListener('click', function onPanelClicked(event) {
   if (event.target.matches('.btn-show-info')) {
     showInfoModal(event.target.dataset.id)
   }
+})
+
+//listen to search form
+searchForm.addEventListener('submit', function onSearchFormSubmitted(event) {
+  event.preventDefault()
+  const keyword = searchInput.value.trim().toLowerCase()
+
+  let filteredFriends = []
+
+  filteredFriends = friends.filter(friend =>
+    friend.name.toLowerCase().includes(keyword) || friend.surname.toLowerCase().includes(keyword)
+  )
+
+  if (filteredFriends.length === 0) {
+    return alert(`您輸入的關鍵字：${keyword} 沒有符合條件的結果`)
+  }
+  renderFriendList(filteredFriends)
 })
 
 // send request to index api
