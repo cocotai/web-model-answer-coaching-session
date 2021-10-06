@@ -20,7 +20,7 @@ app.get("/", (req, res) => {
 
 app.post("/", (req, res) => {
   if (!req.body.url) return res.redirect("/")
-  const shortURL = shortenURL()
+  const shortURL = shortenURL(5)
 
   URL.findOne({ originalURL: req.body.url })
     .then(data =>
@@ -39,7 +39,16 @@ app.get("/:shortURL", (req, res) => {
   const { shortURL } = req.params
 
   URL.findOne({ shortURL })
-    .then(data => res.redirect(data.originalURL))
+    .then(data => {
+      if (!data) {
+        return res.render("error", {
+          errorMsg: "Can't found the URL",
+          errorURL: req.headers.host + "/" + shortURL,
+        })
+      }
+
+      res.redirect(data.originalURL)
+    })
     .catch(error => console.error(error))
 })
 
