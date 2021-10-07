@@ -5,7 +5,7 @@ const totalAmount = document.querySelector("#total-amount");
 const button = document.querySelector("#submit-button");
 
 // 菜單資料
-let productData = [
+const  productData = [
   {
     id: "product-1",
     imgUrl:
