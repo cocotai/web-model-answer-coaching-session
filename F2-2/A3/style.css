@@ -1,3 +1,7 @@
-.lyrics-box{
-  border: 1px solid #DADADA;
+body {
+  overflow-y: scroll;
+}
+
+.lyrics-box {
+  border: 1px solid #dadada;
 }
