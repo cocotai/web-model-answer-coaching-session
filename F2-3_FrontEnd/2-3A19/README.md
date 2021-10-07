@@ -11,12 +11,11 @@ git clone https://github.com/ChiaAn0/Model-Answer-Foundation/tree/main/F2-3_Fron
 ```
 進入專案資料夾
 ```
-cd restaurantList
+cd Model-Answer-Foundation/F2-3_FrontEnd/2-3A19
 ```
 安裝專案需求套件
 ```
 npm install 
-npm i nodemon
 ```
 啟動伺服器，執行專案
 ```
