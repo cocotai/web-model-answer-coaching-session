@@ -3,14 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <title>CodePen - DOM - 篩選王牌得分員 - template</title>
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'><link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+  <link rel="stylesheet" href="./style.css">
 
 </head>
 <body>
 <!-- partial:index.partial.html -->
 <div class="container">
-  <h1 class="mt-5">湘北籃球隊計分板</h1>
+  <h1 class="title mt-5">湘北籃球隊計分板</h1>
   <ol>
     <li>找出<strong>得分數</strong>大於等於 20 分的球員，在他們的名字旁加上 <i class="fa fa-thumbs-up"></i> 符號</li>
     <li>你只能使用 JavaScript</li>
@@ -18,7 +21,7 @@
 
   </ol>
 
-  <table class="table table-bordered table-hover text-center">
+  <table class="scoreboard table table-bordered table-hover text-center">
     <thead>
       <tr>
         <th>球員</th>
