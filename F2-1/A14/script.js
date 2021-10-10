@@ -17,10 +17,10 @@ for (let i = 0; i < profile.experiences.length; i++) {
 
 // 用 myCard.innerHTML 抽換內容
 myCard.innerHTML = `
-    <img src="${profile.avatar}" alt="Avatar" class="rounded float-right pr-3" width="200">
-    <h3 class="my-name text-uppercase">${profile.name}</h3>
+    <img src="${profile.avatar}" alt="Avatar" class="my-card__img" width="200">
+    <h3 class="my-name">${profile.name}</h3>
     <p class="info">${profile.info}</p>
-    <div class="experience text-mute">
+    <div class="experience">
       <h6>Experience</h6>
       <ul class="list-unstyled small">
         ${experiencesText}
