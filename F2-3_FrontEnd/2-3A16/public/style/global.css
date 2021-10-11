@@ -55,6 +55,8 @@ header {
 
 .card .card-img-top {
   height: 180px;
+  aspect-ratio: 2/1;
+  object-fit: cover;
 }
 
 .card-title {
