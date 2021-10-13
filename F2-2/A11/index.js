@@ -1,3 +1,4 @@
+// 建議: 註解的「功能二」和「功能三」有點簡略或不夠貼切，例如有些東西會跨功能使用（像 filteredFriends 在搜尋和分頁都會用到），建議可以不用寫得這麼零碎，如果要寫詳細的話可以多寫一些用途或流程說明，會更能幫助學生理解。另外有關搜尋的功能一似乎沒有寫到，也可以一併補上。
 const BASE_URL = 'https://lighthouse-user-api.herokuapp.com'
 const INDEX_URL = BASE_URL + '/api/v1/users/'
 const friends = []
@@ -59,6 +60,7 @@ function showInfoModal(id) {
     const data = response.data
     // insert data into modal ui
     modalTitle.innerText = `${data.name} ${data.surname}`
+    // 建議: 縮排整理
     modalBody.innerHTML = `
     <div class="row">
             <div class="col-sm-4" id="info-modal-image">

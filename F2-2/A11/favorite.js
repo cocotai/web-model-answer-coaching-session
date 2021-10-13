@@ -1,3 +1,10 @@
+/* 最愛頁面多了搜尋和分頁的功能（課程內容只有做主頁面），個人認為還算 meet expectation 的範圍，但會衍生出一些 bug，
+   例如當最愛頁面超過兩頁以上時，每次刪除第二頁以後的使用者都會跳回第一頁（需要加入記住頁碼的功能，但這已經是 A12 的範圍），
+   以及當刪除完第後面頁面的名單時，頁碼還是會維持多頁，造成按下後會顯示空白頁面的問題（需要加入渲染頁碼的步驟）。
+   但如果修正完這些 bug 又會覺得以 model answer 來說過於優化，也許可以不修正但留下請學生思考的說明，作為另一種讓學生發揮的方向。*/
+
+// 建議: 註解的「功能二」和「功能三」有點簡略或不夠貼切，例如有些東西會跨功能使用（像 filteredFriends 在搜尋和分頁都會用到），建議可以不用寫得這麼零碎，如果要寫詳細的話可以多寫一些用途或流程說明，會更能幫助學生理解。另外有關搜尋的功能一似乎沒有寫到，也可以一併補上。
+
 //功能二: 收藏 / 移除
 const BASE_URL = 'https://lighthouse-user-api.herokuapp.com'
 const INDEX_URL = BASE_URL + '/api/v1/users/'
@@ -43,6 +50,7 @@ function showInfoModal(id) {
     const data = response.data
     // insert data into modal ui
     modalTitle.innerText = `${data.name} ${data.surname}`
+    // 建議: 縮排整理
     modalBody.innerHTML = `
     <div class="row">
             <div class="col-sm-4" id="info-modal-image">
