@@ -16,6 +16,7 @@ const paginator = document.querySelector('#paginator')
 const modeChangeSwitch = document.querySelector('#change-mode')
 
 function renderMovieList(data) {
+  // 建議: card-mode 本身不含有 CSS 內容，只是用來標記模式用，這種情況建議使用 data- 屬性，或者和 currentPage 一樣宣告為 javscript 變數會更直觀。
   // 透過class name 渲染不同的顯示內容
   if (dataPanel.classList.contains('card-mode')) {
     let rawHTML = ''
@@ -106,6 +107,7 @@ function addToFavorite(id) {
 
 // 切換不同的顯示方式
 function changeDisplayMode(displayMode) {
+  // 建議: 檢驗是否已經是該模式的 if 可以拉到 if else 的上面，先檢驗完再做剩下的判斷，可以減少重複的程式碼。
   if (displayMode === 'card-mode') {
     if (dataPanel.classList.contains(displayMode)) return
     dataPanel.classList.remove('list-mode')
