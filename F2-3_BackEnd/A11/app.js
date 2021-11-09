@@ -6,7 +6,7 @@ const cookieParser = require("cookie-parser")
 app.engine("handlebars", exphbs({ defaultLayout: "main" }))
 app.set("view engine", "handlebars")
 app.use(express.urlencoded({ extended: true }))
-app.use(cookieParser("type_any_you_want"))
+app.use(cookieParser("type_any_you_like"))
 
 const PORT = 3000
 
@@ -14,9 +14,8 @@ const validateUser = require("./utils/validator")
 
 // 登入頁面 if 登入過就轉到home頁面
 app.get("/", (req, res) => {
-  console.log(req.signedCookies)
   if (req.signedCookies.user) {
-    res.redirect("/home")
+    return res.redirect("/home")
   }
   return res.render("index")
 })
@@ -41,9 +40,8 @@ app.post("/", (req, res) => {
 // home頁面 if 沒登入狀態就轉到登入頁面
 // 狀態過期則會清除cookie並轉到登入頁面
 app.get("/home", (req, res) => {
-  console.log(req.signedCookies)
   if (!req.signedCookies.user) {
-    res.redirect("/")
+    return res.redirect("/")
   }
 
   const { email, password } = req.signedCookies.user
