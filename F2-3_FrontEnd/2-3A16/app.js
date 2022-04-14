@@ -15,7 +15,7 @@ app.get("/", (req, res) => {
 
 app.get("/search", (req, res) => {
   if (!req.query.keywords) {
-    return res.redirect("/")
+    res.redirect("/")
   }
 
   const keywords = req.query.keywords
